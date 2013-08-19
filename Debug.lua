@@ -1,37 +1,24 @@
 Debug = class()
 
-Debug.playZonesBoard = color(127,127,255,96)
-Debug.playZonedControl = color(255,127,127,96)
-
 function Debug.setup()
-    
-    parameter.boolean("playDisplayZones", false)
-    
-    parameter.action("test", function() print(WIDTH) end)
-    
+
+    parameter.watch("FPS")
+    FPS = 0
+
+    parameter.watch("DeltaTime")
+
+    Debug.timeInterval = 0
+    Debug.frameCount = 0
+
 end
 
 function Debug.draw()
-    pushStyle()
-    rectMode(CORNERS)
-    
-    if playDisplayZones then
-        
-        fill(Debug.playZonesBoard)
-        rect(
-            Play.boardView.x,
-            Play.boardView.y,
-            Play.boardView.z,
-            Play.boardView.w)
-        
-        fill(Debug.playZonedControl)
-        rect(
-            Play.controlView.x,
-            Play.controlView.y,
-            Play.controlView.z,
-            Play.controlView.w)
-        
+    Debug.frameCount = Debug.frameCount + 1
+    Debug.timeInterval = Debug.timeInterval + DeltaTime
+
+    if Debug.timeInterval > 1 then
+        FPS = math.floor(Debug.frameCount / Debug.timeInterval)
+        Debug.timeInterval = 0
+        Debug.frameCount = 0
     end
-    
-    popStyle()
 end

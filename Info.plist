@@ -6,10 +6,18 @@
 	<string>Unknown</string>
 	<key>Buffer Order</key>
 	<array>
+		<string>_README</string>
+		<string>Ball</string>
+		<string>Board</string>
+		<string>Brick</string>
+		<string>Control</string>
 		<string>Debug</string>
-		<string>Main</string>
 		<string>Pad</string>
 		<string>Play</string>
+		<string>Poing</string>
+		<string>Score</string>
+		<string>Truntable</string>
+		<string>Wall</string>
 	</array>
 	<key>Created</key>
 	<string>2013-08-18 10:14:50 +0000</string>

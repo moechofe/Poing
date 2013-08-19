@@ -1,30 +1,39 @@
 Pad = class()
 
-Pad.thinRatio = 0.01
-Pad.sizeRatio = 0.1
+Pad.spaceRatio = 0.008
+Pad.sizeRatio = 0.14
+Pad.thickRatio = 0.007
 
-Pad.color = color(255,255,255)
-
-function Pad:init(left, right, bottom, top, invertSide)
-    self.sizeRatio = Pad.sizeRatio
-    self.size = math.floor(self.sizeRatio * (top - bottom))
-    self.thin = math.floor(self.thinRatio * (right - left))
+function Pad:init(column, bottom, top, width)
+    self.column = column
+    self.bottom = bottom
+    self.top = top
     
-    if invertSize then
-    else
-        self.pos = vec2(
-            right - math.floor(self.thin * 1.3),
-            bottom + math.floor((top - bottom) / 2) )
-    end
+    local height = top - bottom
+    
+    self.pos = bottom + math.floor(height / 2)
+    
+    self.size = math.floor((height * Pad.sizeRatio) / 2)
+    
+    self.thick = math.floor((width * Pad.thickRatio) / 2)
+    
+    self.color = color(255,255,255)
 end
 
 function Pad:draw()
     pushStyle()
     
-    print(self.pos, self.thin, self.size)
-    fill(Pad.color)
-    rectMode(CENTER)
-    rect(self.pos.x, self.pos.y, self.thin, self.size)
+    rectMode(RADIUS)
+    fill(self.color)
+    rect(self.column, self.pos, self.thick, self.size)
     
     popStyle()
+end
+
+function Pad:moveTo(y)
+    self.pos = y
+end
+
+function Pad:limit(y)
+    return math.min(math.max(y, self.bottom + self.size), self.top - self.size)
 end
