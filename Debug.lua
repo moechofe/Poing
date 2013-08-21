@@ -2,17 +2,21 @@ Debug = class()
 
 function Debug.setup()
 
-    parameter.watch("FPS")
-    FPS = 0
+    parameter.clear()
 
-    parameter.watch("DeltaTime")
+    FPS = 0
+    parameter.watch("FPS")
 
     Debug.timeInterval = 0
     Debug.frameCount = 0
+    parameter.watch("DeltaTime")
+
+    parameter.boolean("DisplayZones",false)
 
 end
 
-function Debug.draw()
+function Debug.draw(board, control)
+    
     Debug.frameCount = Debug.frameCount + 1
     Debug.timeInterval = Debug.timeInterval + DeltaTime
 
@@ -21,4 +25,28 @@ function Debug.draw()
         Debug.timeInterval = 0
         Debug.frameCount = 0
     end
+    
+    pushStyle()
+    
+    if DisplayZones then
+        
+        -- Debug board
+        fill(color(0,255,0,127))
+        rect(
+            board.left,
+            board.bottom,
+            board.right,
+            board.top)
+        
+        -- Debug control
+        fill(color(255,0,0,127))
+        rect(
+            control.left,
+            control.bottom,
+            control.right,
+            control.top)
+
+    end
+
+    popStyle()
 end

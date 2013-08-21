@@ -3,15 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>Unknown</string>
+	<string>truc@moechofe.com</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>_README</string>
+		<string>Asset</string>
 		<string>Ball</string>
 		<string>Board</string>
 		<string>Brick</string>
+		<string>Composition</string>
 		<string>Control</string>
 		<string>Debug</string>
+		<string>Error</string>
+		<string>Loading</string>
 		<string>Pad</string>
 		<string>Play</string>
 		<string>Poing</string>
@@ -24,6 +28,6 @@
 	<key>Dependencies</key>
 	<array/>
 	<key>Description</key>
-	<string>No description available</string>
+	<string>Prototype of a copy of Poing!, the best Breakout clone for the Amiga</string>
 </dict>
 </plist>

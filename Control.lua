@@ -1,44 +1,27 @@
 Control = class()
 
-Control.widthRatio = 0.9
-Control.sizeRatio = 0.3
-
-function Control:init(left, right, bottom, top, pad)
-    -- XXX: Used?
-    self.left = left
-    self.right = right
-    self.bottom = bottom
-    self.top = top
+function Control.initNormal(pad)
+    local instance = {}
+    setmetatable(instance,Control)
     
-    local height = top - bottom
-    local width = right - left
+    instance:init(pad)
     
-    self.pos = bottom + math.floor(height / 2)
-    self.size = math.floor((height * Control.sizeRatio) / 2)
-    self.thick = math.floor(width / 2)
-    self.column = left + math.floor(width / 2)
-    
-    self.pad = pad
-    self.touch = nil
-    
-    self.color = color(0,0,127)
+    return instance
 end
 
-function Control:draw()
-    pushStyle()
+function Control:init(pad)
+    self.pad = pad
     
-    rectMode(RADIUS)
-    fill(self.color)
-    rect(self.column, self.pos, self.thick, self.size)
-    
-    popStyle()
+    local pos = Board.bottomWall + Control.halfSize + math.floor((Control.height - 2 * Control.halfSize) / 2)
+    self.bottom = pos - Control.halfSize
+    self.top = pos + Control.halfSize
 end
 
 function Control:touched(t)
     if t.state == BEGAN
     and self.touch == nil
     and t.x >= self.left and t.x <= self.right
-    and t.y >= (self.pos - self.size) and t.y <= (self.pos + self.size) then
+    and t.y >= self.bottom and t.y <= self.top then
         self.touch = t.id
         self:apply(t)
     elseif t.state == MOVING
@@ -48,6 +31,7 @@ function Control:touched(t)
     elseif t.state == ENDED
     and self.touch == t.id then
         self.touch = nil
+        self:apply(t)
         self:update(t)
     end
 end
@@ -57,5 +41,11 @@ function Control:apply(t)
 end
 
 function Control:update(t)
-    self.pos = self.pad:limit(t.y)
+    local pos = self.pad:limit(t.y)
+    self.bottom = pos - Control.halfSize
+    self.top = pos + Control.halfSize
+end
+
+function Control:__tostring()
+    return "Control: "..self.left.."x"..self.bottom.."x"..self.right.."x"..self.top
 end

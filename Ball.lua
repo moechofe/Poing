@@ -8,13 +8,13 @@ function Ball:init(height)
     
     self.size = math.floor(height * Ball.sizeRatio)
     
-    self.speed = 70
+    self.speed = 1
     
     self.color = color(255,255,255)
     
-    self.body = physics.body(CIRCLE, self.size)
+    self.body = physics.body(CIRCLE, self.size / 2)
     self.body.x = 300
-    self.body.y = 300
+    self.body.y = 500
     self.body.gravityScale = 0
     self.body.bullet = true
     self.body.info = self

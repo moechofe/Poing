@@ -1,31 +1,29 @@
 Pad = class()
 
-Pad.spaceRatio = 0.008
-Pad.sizeRatio = 0.14
-Pad.thickRatio = 0.007
+Pad.color = color(255)
+Pad.colorBorder = color(239)
 
-function Pad:init(column, bottom, top, width)
-    self.column = column
-    self.bottom = bottom
-    self.top = top
+function Pad.initNormal()
+    local instance = {}
+    setmetatable(instance,Pad)
     
-    local height = top - bottom
+    instance:init()
     
-    self.pos = bottom + math.floor(height / 2)
-    
-    self.size = math.floor((height * Pad.sizeRatio) / 2)
-    
-    self.thick = math.floor((width * Pad.thickRatio) / 2)
-    
-    self.color = color(255,255,255)
+    return instance
+end
+
+function Pad:init()
+
+    self.column = self.left + math.floor((self.right - self.left) / 2)
+    self.pos = self.bottom + math.floor(self.height / 2)
+
 end
 
 function Pad:draw()
     pushStyle()
     
-    rectMode(RADIUS)
-    fill(self.color)
-    rect(self.column, self.pos, self.thick, self.size)
+    spriteMode(CENTER)
+    sprite(Asset.pad,self.column,self.pos,self.thickness,self.size)
     
     popStyle()
 end
@@ -35,5 +33,9 @@ function Pad:moveTo(y)
 end
 
 function Pad:limit(y)
-    return math.min(math.max(y, self.bottom + self.size), self.top - self.size)
+    return math.min(math.max(y, self.bottom + self.halfSize), self.top - self.halfSize)
+end
+
+function Pad:__tostring()
+    return "Pad: "..self.left.."x"..self.bottom.."x"..self.right.."x"..self.top.." size: "..self.size.."x"..self.thickness
 end

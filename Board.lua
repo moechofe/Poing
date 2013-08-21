@@ -1,32 +1,24 @@
 Board = class()
 
-Board.heightRatio = 9/16
+Board.color = color(239)
 
-function Board:init(left, right, bottom, top)
-    self.left = left
-    self.right = right
-    self.bottom = bottom
-    self.top = top
+function Board.initNormal()
+    local instance = {}
+    setmetatable(instance,Board)
     
-    self.topBody = physics.body( EDGE,
-        vec2(left,top),
-        vec2(right,top) )
-    self.topBody.info = self
+    instance.left = 0
+    instance.right = Board.width
     
-    self.bottomBody = physics.body( EDGE,
-        vec2(left,bottom),
-        vec2(right,bottom) )
-    self.bottomBody.info = self
-    
-    self.color = color(40,40,50)
+    return instance
 end
 
 function Board:draw()
     pushStyle()
     
     rectMode(CORNERS)
-    fill(self.color)
-    rect(self.left, self.bottom, self.right, self.top)
+    fill(Board.color)
+    rect(0,self.top,self.right,self.topWall)
+    rect(0,self.bottom,self.right,self.bottomWall)
     
     popStyle()
 end
@@ -37,5 +29,5 @@ function Board:throwOut(b, normal, magnitude)
 end
 
 function Board:__tostring()
-    return "Board"
+    return "Board: "..self.left.."x"..self.bottom.."x"..self.right.."x"..self.top
 end

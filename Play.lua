@@ -1,48 +1,32 @@
 Play = class()
 
-function Play.singleNormal()
+function Play.initNormal()
     local instance = {}
     setmetatable(instance,Play)
-
-    local boardHeight = math.floor(HEIGHT * Board.heightRatio)
-
-    local columnBoardControl = math.floor(WIDTH * Control.widthRatio)
-    local rowBoardTurntable = math.floor((HEIGHT - boardHeight) / 2)
-    local rowBoardScore = rowBoardTurntable + boardHeight
     
-    local columnPad = columnBoardControl - math.floor(columnBoardControl * Pad.spaceRatio)
-
-    local board = Board(
-        0,
-        columnBoardControl,
-        rowBoardTurntable,
-        rowBoardScore )
+    local board = Board.initNormal()
+    local wall = Wall.initNormal()
+    local pad = Pad.initNormal()
+    local control = Control.initNormal(pad)
     
-    local pad = Pad(
-        columnPad,
-        rowBoardTurntable,
-        rowBoardScore,
-        columnBoardControl )
+    if debug then
+        print(board)
+        print(wall)
+        print(control)
+        print(pad)
+    end
 
-    local control = Control(
-        columnBoardControl,
-        WIDTH,
-        rowBoardTurntable,
-        rowBoardScore,
-        pad )
-    
-    local balls = Balls(boardHeight)
-
-    instance:init(board, pad, control, balls)
+    instance:init(board, pad, control, balls, wall)
 
     return instance
 end
 
-function Play:init(board, pad, control, balls)
+function Play:init(board, pad, control, balls, wall)
     self.board = board
     self.pad = pad
     self.control = control
     self.balls = balls
+    self.wall = wall
     
     self.color = color(0,0,0)
 end
@@ -50,10 +34,18 @@ end
 function Play:draw()
     background(self.color)
     
-    self.control:draw()
+    --self.control:draw()
     self.board:draw()
+    self.wall:draw()
     self.pad:draw()
-    self.balls:draw(self.board)
+    --self.balls:draw(self.board)
+
+    --tint(255)
+    sprite(Asset.bricks[1], 302,300, Brick.scale)
+
+    --sprite("Dropbox:brick-02", 400,300,Brick.width*scale)
+    
+    if debug then Debug.draw(self.board, self.control) end
 end
 
 function Play:touched(t)

@@ -1,22 +1,18 @@
-DEBUG = true
+debug = true
 
-scene = nil
-
+-- Setup device
 supportedOrientations(LANDSCAPE_ANY)
+displayMode(FULLSCREEN)
 noSmooth()
+rectMode(CORNERS)
 
-function setup()
-
-    scene = Play.singleNormal()
-    
-    if DEBUG then Debug.setup() end
-    
+function setup()    
+    scene = Loading()
+    if debug then Debug.setup() end
 end
 
 function draw()
     scene:draw()
-    
-    if DEBUG then Debug.draw() end
 end
 
 function touched(t)
@@ -28,3 +24,7 @@ function collide(c)
         c.bodyA.info:throwOut(c.bodyB.info, c.normal, c.normalImpulse)
     end
 end
+
+saveProjectInfo("Description", "Prototype of a copy of Poing!, the best Breakout clone for the Amiga")
+saveProjectInfo("Author", "truc@moechofe.com")
+
