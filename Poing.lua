@@ -5,9 +5,10 @@ supportedOrientations(LANDSCAPE_ANY)
 displayMode(FULLSCREEN)
 noSmooth()
 rectMode(CORNERS)
+--ellipseMode(CENTER)
 
 function setup()    
-    scene = Loading()
+    scene = Play.initNormal()
     if debug then Debug.setup() end
 end
 
@@ -20,9 +21,7 @@ function touched(t)
 end
 
 function collide(c)
-    if c.state == BEGAN then
-        c.bodyA.info:throwOut(c.bodyB.info, c.normal, c.normalImpulse)
-    end
+    scene:collide(c)
 end
 
 saveProjectInfo("Description", "Prototype of a copy of Poing!, the best Breakout clone for the Amiga")

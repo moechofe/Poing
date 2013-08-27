@@ -1,53 +1,45 @@
 Play = class()
 
+Play.color = color(0)
+
 function Play.initNormal()
-    local instance = {}
-    setmetatable(instance,Play)
+local i = {} setmetatable(i,Play)
     
-    local board = Board.initNormal()
-    local wall = Wall.initNormal()
-    local pad = Pad.initNormal()
-    local control = Control.initNormal(pad)
+    i.comp, i.pad, i.wall = Comp.initNormal()
     
-    if debug then
-        print(board)
-        print(wall)
-        print(control)
-        print(pad)
-    end
-
-    instance:init(board, pad, control, balls, wall)
-
-    return instance
-end
-
-function Play:init(board, pad, control, balls, wall)
-    self.board = board
-    self.pad = pad
-    self.control = control
-    self.balls = balls
-    self.wall = wall
+    i.ball = Ball(450,200)
     
-    self.color = color(0,0,0)
-end
+    i.ball:throw(-0.5, 1, 20)
+
+return i end
 
 function Play:draw()
     background(self.color)
     
-    --self.control:draw()
-    self.board:draw()
-    self.wall:draw()
+    self.comp:draw()
     self.pad:draw()
+    self.ball:draw()
+    
+    --self.control:draw()
+    --self.board:draw()
+    --self.wall:draw()
+    --self.pad:draw()
     --self.balls:draw(self.board)
 
-    --tint(255)
-    sprite(Asset.bricks[1], 302,300, Brick.scale)
-
-    --sprite("Dropbox:brick-02", 400,300,Brick.width*scale)
+    --sprite("Dropbox:ball", 500,300,12)
     
-    if debug then Debug.draw(self.board, self.control) end
+    if debug then Debug.draw(self.pad) end
 end
 
 function Play:touched(t)
-    self.control:touched(t)
+    self.pad:touched(t)
+end
+
+function Play:collide(c)
+    Debug.collide(c)
+    
+    if c.state == BEGAN then
+      --  print("bodyA:",c.bodyA.info," bodyB:",c.bodyB.info,c.position,c.normalImpulse)
+        --c.bodyA.info:throwOut(c.bodyB.info)
+    end
 end

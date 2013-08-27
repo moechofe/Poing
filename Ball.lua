@@ -1,60 +1,44 @@
 Ball = class()
 
-Ball.sizeRatio = 0.015
-Ball.max = 1
-
-function Ball:init(height)
-    self.used = true
+function Ball:init(x,y)
     
-    self.size = math.floor(height * Ball.sizeRatio)
-    
-    self.speed = 1
-    
-    self.color = color(255,255,255)
-    
-    self.body = physics.body(CIRCLE, self.size / 2)
-    self.body.x = 300
-    self.body.y = 500
+    self.body = physics.body(CIRCLE, math.floor((Comp.ballSize * self.scale) / 2))
+    self.body.x = x
+    self.body.y = y
     self.body.gravityScale = 0
+    self.body.mass = 0.05
+    self.body.friction = 0
     self.body.bullet = true
     self.body.info = self
-
-    self:throw(vec2(0,1) * self.speed)
-end
-
-function Ball:throwOut(b, normal, magnitude)
-    normal.x = -normal.x
-    self:throw(normal * self.speed)
-end
-
-function Ball:throw(v)
-    self.body:applyForce(v)
+    
+    self.frame = readImage("Dropbox:ball")
+    
+    self.size = Comp.ballSize * self.scale
+    
+    self.normal = vec2()
 end
 
 function Ball:draw()
-    pushStyle()
-   
-    ellipseMode(CENTER)
-    fill(self.color)
-    ellipse(self.body.x, self.body.y, self.size)
-   
-    popStyle()
+    spriteMode(CENTER)
+    sprite(self.frame, self.body.x, self.body.y, self.size)
+end
+
+function Ball:throwOut(s)
+    s.throwOut(self)
+end
+
+function Ball:throw(x, y, speed)
+    print(x,y,speed,self.body.linearVelocity , self.body.angularVelocity)
+    self.normal.x = x
+    self.normal.y = y
+    self.speed = speed
+    self.body.linearVelocity = vec2()
+    self.body.angularVelocity = 0
+    self.body:applyForce(self.normal * self.speed)
+    --self.body.linearVelocity = self.normal
+    
 end
 
 function Ball:__tostring()
-    return "Ball"
-end
-
-Balls = class()
-
-function Balls:init(height)
-    for i=1,Ball.max do
-        table.insert(self, Ball(height))
-    end
-end
-
-function Balls:draw(board)
-    for i,b in ipairs(self) do
-        b:draw()
-    end
+    return "Ball:"..self.body.x.."x"..self.body.y
 end
