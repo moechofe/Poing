@@ -1,0 +1,1 @@
+../../dependencies/qad-asset-manager/asset.js

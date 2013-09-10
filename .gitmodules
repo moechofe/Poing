@@ -7,3 +7,9 @@
 [submodule "dependencies/requirejs-plugins"]
 	path = dependencies/requirejs-plugins
 	url = https://github.com/millermedeiros/requirejs-plugins.git
+[submodule "dependencies/qad-asset-manager"]
+	path = dependencies/qad-asset-manager
+	url = git@github.com:moechofe/qad-asset-manager.git
+[submodule "dependencies/async"]
+	path = dependencies/async
+	url = https://github.com/caolan/async.git

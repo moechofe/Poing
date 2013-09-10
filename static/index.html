@@ -11,7 +11,46 @@
 	</div>
 </div>
 
-<script data-main=app/main src=lib/require.js></script>
+<script src=lib/require.js></script>
+<script>
+require({
+	baseUrl: './app',
+	paths: {
+		'asset': '../lib/asset',
+		'async': '../lib/async',
+		'json': '../lib/json',
+		'log': '../lib/log',
+		'text': '../lib/text',
+	},
+	shim: {
+	},
+	config: {
+		env: {
+			debug: true},
+	}
+},
+['app','asset'],
+function(App,Asset){(function(document,window){
+
+// Initialize external module
+Asset.require = require;
+
+function ready()
+{
+	console.log("DOM is ready");
+
+	// Initialize internal module
+	App.init();
+
+	// Run the application
+	App.run();
+}
+
+if(document.readyState=='complete') ready();
+else document.addEventListener('DOMContentLoaded', ready, false);
+
+})(document,window);});
+</script>
 
 </body>
 </html>
