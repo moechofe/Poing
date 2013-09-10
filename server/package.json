@@ -1,0 +1,6 @@
+{
+    "name": "poing",
+    "dependencies": {
+        "vibe-d": ">=0.7.16"
+    }
+}
