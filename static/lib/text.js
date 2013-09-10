@@ -1,0 +1,1 @@
+../../dependencies/requirejs-text/text.js

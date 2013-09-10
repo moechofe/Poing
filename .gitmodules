@@ -1,0 +1,9 @@
+[submodule "dependencies/requirejs"]
+	path = dependencies/requirejs
+	url = https://github.com/jrburke/requirejs.git
+[submodule "dependencies/requirejs-text"]
+	path = dependencies/requirejs-text
+	url = https://github.com/requirejs/text.git
+[submodule "dependencies/requirejs-plugins"]
+	path = dependencies/requirejs-plugins
+	url = https://github.com/millermedeiros/requirejs-plugins.git

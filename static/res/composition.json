@@ -1,0 +1,10 @@
+{
+	"brick":{
+		"width":7, "height":8, "space":1},
+	"border":{
+		"thickness": 1},
+	"wall":{
+		"thickness": 1},
+	"pad":{
+		"thickness": 3}
+}
