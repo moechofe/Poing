@@ -1,5 +1,5 @@
 define(function(require,exports,module){
 
-	return module.config().env;
+	return module.config();
 
 });

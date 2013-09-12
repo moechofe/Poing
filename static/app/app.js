@@ -1,10 +1,14 @@
-define(['loading','env'],function(Loading,env){
+define(['single','loading','balls','env'],function(Single,Loading,Balls,env){
 
-// Reference to callback functions binded to theirs respective object.s
+var app = null;
+
+// Reference to callback functions binded to theirs respective objects.
 var game = null;
+var warm = null;
 
 function App()
 {
+    if(env.debug) console.warn("Debug mode is enabled");
 }
 
 App.prototype = {
@@ -12,6 +16,8 @@ App.prototype = {
 init: function AppInit()
 {
 	game = this.game.bind(this);
+    warm = this.warm.bind(this);
+    return this;
 },
 
 run: function AppRun()
@@ -19,22 +25,27 @@ run: function AppRun()
 	this.loading();
 },
 
-loading: function AppLoading(cb)
+loading: function AppLoading()
 {
-	Loading.run(game);
+	Loading.run(warm);
 },
 
-game: function AppGame(cb)
+warm: function AppWarm()
 {
-	console.log("HERE");
+    Balls.init();
+    Single.init();
+    game();
+},
+
+game: function AppGame()
+{
+    Single.start();
 }
 
 };
 
-var app = new App;
-
+app = new App;
 if(env.debug) window.App = app;
-
 return app;
 
 });

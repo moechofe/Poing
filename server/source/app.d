@@ -4,7 +4,8 @@ import vibe.http.fileserver;
 
 void index(HTTPServerRequest req, HTTPServerResponse res)
 {
-	res.writeBody(cast(ubyte[])("Hello, World!"), "text/plain");
+	//res.writeBody(cast(ubyte[])("Hello, World!"), "text/plain");
+    res.renderCompat!("index.dt", HTTPServerRequest, "req")(req);
 }
 
 shared static this()
@@ -14,6 +15,7 @@ shared static this()
 	router.get("/lib/*", serveStaticFiles("../static/"));
 	router.get("/gfx/*", serveStaticFiles("../static/"));
 	router.get("/res/*", serveStaticFiles("../static/"));
+	router.get("/uid/*", serveStaticFiles("../static/"));
 	router.get("/", &index);
 
 	auto settings = new HTTPServerSettings;
