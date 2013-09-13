@@ -1,4 +1,4 @@
-define(['env'], function(env){
+define(['board','env'], function(Board,env){
 
 var single = null;
 
