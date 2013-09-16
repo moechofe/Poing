@@ -1,4 +1,4 @@
-define(['single','loading','balls','env'],function(Single,Loading,Balls,env){
+define(['single','loading','balls','board','render','env'],function(Single,Loading,Balls,Board,Render,env){
 
 var app = null;
 
@@ -8,16 +8,20 @@ var warm = null;
 
 function App()
 {
-    if(env.debug) console.warn("Debug mode is enabled");
+	if(env.debug) console.warn("Debug mode is enabled");
 }
 
 App.prototype = {
 
-init: function AppInit()
+init: function AppInit(document, window)
 {
+	Render.init('canvas', document, window, Board.width, Board.height);
+
+	Balls.context = Render.balls;
+
 	game = this.game.bind(this);
-    warm = this.warm.bind(this);
-    return this;
+	warm = this.warm.bind(this);
+	return this;
 },
 
 run: function AppRun()
@@ -32,14 +36,14 @@ loading: function AppLoading()
 
 warm: function AppWarm()
 {
-    Balls.init();
-    Single.init();
-    game();
+	Balls.init(Render.balls);
+	Single.init();
+	game();
 },
 
 game: function AppGame()
 {
-    Single.start();
+	Single.reset().start();
 }
 
 };

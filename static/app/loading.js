@@ -1,4 +1,4 @@
-define(['asset','cfg'], function(Asset,cfg){
+define(['game','asset','cfg'], function(Game,Asset,cfg){
 
 var asset = new Asset(cfg.assetLoadingParallel);
 
@@ -23,6 +23,8 @@ run: function LoadingRun(cb)
 	){
 
 		console.log("Initializing assets");
+
+		Game.ball[1] = ball_1;
 
 		cb(null);
 

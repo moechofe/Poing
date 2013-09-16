@@ -19,8 +19,8 @@ tileCols: 27,
 
 borderThickness: 1,
 wallThickness: 1,
-paddleThickness: 1,
-safeWidth: 60
+paddleThickness: 3,
+safeWidth: 60,
 
 };
 

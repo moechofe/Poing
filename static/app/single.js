@@ -10,8 +10,15 @@ init: function SingleInit()
 {
 },
 
+reset: function SingleReset()
+{
+	Balls.reset().setUpLeft();
+	return this;
+},
+
 start: function SingleStart()
 {
+
 }
 
 };

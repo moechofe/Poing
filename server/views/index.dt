@@ -1,41 +1,40 @@
 !!! 5
 html(lang="en")
-    head
-        link(rel="stylesheet", href="uid/style.css")
+	head
+		link(rel="stylesheet", href="uid/style.css")
 
-    body
+	body
 
-        #board
-            #canvas
-                canvas#tiles
+		#board
+			#canvas
 
-        script(src="lib/require.js")
-        script
-            require({
-                baseUrl: './app',
-                paths: {
-                    'asset': '../lib/asset',
-                    'async': '../lib/async',
-                    'json': '../lib/json',
-                    'log': '../lib/log',
-                    'text': '../lib/text'
-                },
-                config: { env: {
-                    debug: true
-                } }
-            },
-            ['app','asset'],
-            function(App,Asset){(function(document,window){
-                Asset.require = require;
+		script(src="lib/require.js")
+		script
+			require({
+				baseUrl: './app',
+				paths: {
+					'asset': '../lib/asset',
+					'async': '../lib/async',
+					'json': '../lib/json',
+					'log': '../lib/log',
+					'text': '../lib/text'
+				},
+				config: { env: {
+					debug: true
+				} }
+			},
+			['app','asset'],
+			function(App,Asset){(function(document,window){
+				Asset.require = require;
 
-                // When DOM is ready
-                function ready()
-                {
-                    console.log("DOM is ready");
-                    App.init().run();
-                }
+				// When DOM is ready
+				function ready()
+				{
+					console.log("DOM is ready");
+					App.init(document,window).run();
+				}
 
-                if(document.readyState==='complete'||document.readyState==='interactive') ready();
-                else document.addEventListener('DOMContentLoaded',ready,false);
-            })(document,window);});
+				if(document.readyState==='complete'||document.readyState==='interactive') ready();
+				else document.addEventListener('DOMContentLoaded',ready,false);
+			})(document,window);});
 

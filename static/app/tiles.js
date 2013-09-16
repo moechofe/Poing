@@ -13,8 +13,8 @@ function Tiles(rows, cols)
 Tiles.prototype = {
 
 // Compute the size of the zones occupied by the tiles sprites.
-width: (cfg.tileRows * cfg.brickWidth) + (cfg.tileRows * cfg.brickSpace) + cfg.brickSpace,
-height: (cfg.tileCols * cfg.brickHeight) + (cfg.tileCols * cfg.brickSpace) + cfg.brickSpace,
+width: (cfg.tileCols * cfg.brickWidth) + (cfg.tileRows * cfg.brickSpace) + cfg.brickSpace,
+height: (cfg.tileRows * cfg.brickHeight) + (cfg.tileCols * cfg.brickSpace) + cfg.brickSpace,
 
 init: function TilesInit()
 {

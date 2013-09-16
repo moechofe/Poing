@@ -1,20 +1,36 @@
 define(['cfg'], function(cfg){
 
-function Ball()
+function Ball(i, container)
 {
-    // Coords
-    this.x = 0.0;
-    this.y = 0.0;
+	// Index of the Ball in the Balls.list
+	this.i = i;
 
-    // Angle & Speed
-    this.a = -1.0;
-    this.s = 1.0;
+	// Coords
+	this.x = 0.0;
+	this.y = 0.0;
+
+	// Angle & Speed
+	this.a = 0.0;
+	this.s = 0.0;
 }
 
 Ball.prototype = {
 
+Balls: null,
+
 init: function BallInit()
 {
+},
+
+placeAt: function BallPlaceAt(x,y)
+{
+	this.x = x;
+	this.y = y;
+},
+
+free: function BallFree()
+{
+	Ball.Balls.freeOne(this.i);
 }
 
 };

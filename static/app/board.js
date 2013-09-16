@@ -16,7 +16,7 @@ reset: function BoardReset(tileX)
 
 // Compute the size of the board.
 height: Tiles.height + cfg.borderThickness + cfg.borderThickness,
-width: Tiles.width + cfg.wallThickness + cfg.paddleThickness + cfg.safeWidth + cfg.safeWidth,
+width: Tiles.width + cfg.wallThickness + cfg.paddleThickness + cfg.safeWidth*2,
 
 };
 
