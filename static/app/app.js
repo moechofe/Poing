@@ -1,4 +1,4 @@
-define(['single','loading','balls','board','render','env'],function(Single,Loading,Balls,Board,Render,env){
+define(['single','loading','balls','board','game','render','env'],function(Single,Loading,Balls,Board,Game,Render,env){
 
 var app = null;
 
@@ -16,6 +16,7 @@ App.prototype = {
 init: function AppInit(document, window)
 {
 	Render.init('canvas', document, window, Board.width, Board.height);
+	Game.init();
 
 	Balls.context = Render.balls;
 

@@ -1,21 +1,24 @@
-define(['env'], function(env){
+define(['cfg'], function(cfg){
 
 var s = 0;
 
-function Sprite()
-{
-    var scale = new Array(env.maxScale-1);
-}
+function Sprite(){}
 
-Sprite.prototype = {
+(function(){
+var proto = {
 
 init: function SpriteInit()
 {
-    for(s=1; s<arguments.length; s++)
-        this.scale[s] = arguments[s];
+	for(s=0; s<arguments.length; s++)
+		this[s] = arguments[s];
 }
 
 };
+
+for(s=0; s<cfg.maxScale-1; s++) proto[i] = null;
+
+Sprite.prototype = proto;
+})();
 
 return Sprite;
 

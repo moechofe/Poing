@@ -24,7 +24,7 @@ run: function LoadingRun(cb)
 
 		console.log("Initializing assets");
 
-		Game.ball[1] = ball_1;
+		Game.ball.init(ball_1);
 
 		cb(null);
 

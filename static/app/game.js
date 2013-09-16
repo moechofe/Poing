@@ -1,17 +1,18 @@
-define(['env'], function(env){
+define(['sprite','env'], function(Sprite,env){
 
 var game = null;
 
-function Game(){}
+function Game()
+{
+	this.ball = null;
+}
 
 Game.prototype = {
 
-ball: {
-	1: null,
-	2: null,
-	3: null,
-	4: null,
-	5: null }
+init: function GameInit()
+{
+	game.ball = new Sprite()
+}
 
 };
 

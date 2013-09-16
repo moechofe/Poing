@@ -8,6 +8,8 @@ Config.prototype = {
 
 assetLoadingParallel: 4,
 
+maxScale: 1,
+
 ballMax: 16,
 
 brickWidth: 7,
