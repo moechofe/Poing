@@ -11,10 +11,13 @@ function Render()
 		balls: null
 	};
 
+	this.width = 0;
+	this.height = 0;
+
 	// 2D context objects
 	this.balls = null;
 
-	this.scale = 1;
+	this.scale = 0;
 }
 
 Render.prototype = {
@@ -30,6 +33,9 @@ init: function RenderInit(id, document, window, width, height)
 	canvas.appendChild(balls);
 
 	this.balls = balls.getContext('2d');
+
+	this.width = width * this.scale;
+	this.height = height * this.scale;
 
 	var lastTime = 0;
 	var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -58,9 +64,16 @@ init: function RenderInit(id, document, window, width, height)
 		window.cancelAnimationFrame = function(id) { clearTimeout(id); };
 },
 
+clear: function RenderClear(context)
+{
+	context.clearRect(0,0,context.canvas.width,context.canvas.height);
+	return this;
+},
+
 drawImage: function RenderDrawImage(context, x, y, sprite)
 {
-
+	context.drawImage(sprite[this.scale], x, y);
+	return this;
 }
 
 };

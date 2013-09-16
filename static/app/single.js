@@ -26,7 +26,9 @@ start: function SingleStart()
 
 draw: function SingleDraw()
 {
-	Render.drawImage(Render.balls,100,100,Game.ball);
+	Render
+		.clear(Render.balls)
+		.drawImage(Render.balls,100,100,Game.ball);
 	window.requestAnimationFrame(draw);
 }
 
