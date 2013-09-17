@@ -45,7 +45,7 @@ reset: function BallsReset()
 
 setUpLeft: function BallsSetUpLeft()
 {
-	this.addOne().placeAt(100,100);
+	return this.addOne().placeAt(100,100);
 },
 
 nextFree: function BallsNextFree()

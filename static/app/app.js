@@ -1,4 +1,4 @@
-define(['single','loading','balls','board','game','render','env'],function(Single,Loading,Balls,Board,Game,Render,env){
+define(['single','loading','balls','board','game','render','calc','env'],function(Single,Loading,Balls,Board,Game,Render,Calc,env){
 
 var app = null;
 
@@ -37,6 +37,7 @@ loading: function AppLoading()
 
 warm: function AppWarm()
 {
+	Calc.init();
 	Balls.init(Render.balls);
 	Single.init();
 	game();

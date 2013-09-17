@@ -14,7 +14,7 @@ init: function SingleInit()
 
 reset: function SingleReset()
 {
-	Balls.reset().setUpLeft();
+	Balls.reset().setUpLeft().throwOut(1);
 	return this;
 },
 
