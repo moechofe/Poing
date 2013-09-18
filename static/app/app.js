@@ -18,8 +18,6 @@ init: function AppInit(document, window)
 	Render.init('canvas', document, window, Board.width, Board.height);
 	Game.init();
 
-	Balls.context = Render.balls;
-
 	game = this.game.bind(this);
 	warm = this.warm.bind(this);
 	return this;
@@ -38,7 +36,7 @@ loading: function AppLoading()
 warm: function AppWarm()
 {
 	Calc.init();
-	Balls.init(Render.balls);
+	Balls.init(Game.ball);
 	Single.init();
 	game();
 },

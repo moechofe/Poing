@@ -21,11 +21,9 @@ function Balls(length)
 
 Balls.prototype = {
 
-context: null,
-
-init: function BallsInit()
+init: function BallsInit(ball_sprite)
 {
-	Ball.Balls = this;
+	Ball.ball = ball_sprite;
 	i = this.len;
 	while(i--)
 	{
@@ -42,6 +40,14 @@ reset: function BallsReset()
 		this.used[i] = false;
 	return this;
 },
+
+update: function BallsUpdate()
+{
+    i = this.len
+    while(i--)
+        if(this.used[i])
+            this.list[i].update();
+}
 
 setUpLeft: function BallsSetUpLeft()
 {
