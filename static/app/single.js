@@ -1,7 +1,9 @@
-define(['board','game','render','env'], function(Board,Game,Render,env){
+define(['board','balls','game','render','env'], function(Board,Balls,Game,Render,env){
 
 var single = null;
 var draw = null;
+
+var b = 0;
 
 function Single(){}
 
@@ -26,9 +28,14 @@ start: function SingleStart()
 
 draw: function SingleDraw()
 {
-	Render
-		.clear(Render.balls)
-		.drawImage(Render.balls,100,100,Game.ball);
+	Render.cover(Render.balls,'rgba(0,0,0,0.1)');
+	b = Balls.len;
+	while(b--)
+		if(Balls.used[b])
+		{
+			Render.drawImage(Render.balls, Balls.list[b].x, Balls.list[b].y, Game.ball);
+			Balls.list[b].update();
+		}
 	window.requestAnimationFrame(draw);
 }
 

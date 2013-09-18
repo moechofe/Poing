@@ -67,13 +67,17 @@ init: function RenderInit(id, document, window, width, height)
 clear: function RenderClear(context)
 {
 	context.clearRect(0,0,context.canvas.width,context.canvas.height);
-	return this;
+},
+
+cover: function RenderClear(context, style)
+{
+	context.fillStyle = style;
+	context.fillRect(0,0,context.canvas.width,context.canvas.height);
 },
 
 drawImage: function RenderDrawImage(context, x, y, sprite)
 {
 	context.drawImage(sprite[this.scale], x, y);
-	return this;
 }
 
 };
