@@ -16,7 +16,7 @@ init: function SingleInit()
 
 reset: function SingleReset()
 {
-	Balls.reset().setUpLeft().throwOut(1);
+	Balls.reset().setUpLeft().throwOut(3);
 	return this;
 },
 
@@ -28,6 +28,8 @@ start: function SingleStart()
 
 draw: function SingleDraw()
 {
+    Balls.update();
+    /*
 	Render.cover(Render.balls,'rgba(0,0,0,0.1)');
 	b = Balls.len;
 	while(b--)
@@ -35,7 +37,7 @@ draw: function SingleDraw()
 		{
 			Render.drawImage(Render.balls, Balls.list[b].x, Balls.list[b].y, Game.ball);
 			Balls.list[b].update();
-		}
+		}*/
 	window.requestAnimationFrame(draw);
 }
 

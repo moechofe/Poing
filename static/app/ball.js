@@ -1,4 +1,4 @@
-define(['calc','cfg'], function(Calc,cfg){
+define(['render','calc','cfg'], function(Render,Calc,cfg){
 
 var x = 0;
 var y = 0;
@@ -14,7 +14,7 @@ function Ball(i, container)
 
 	// Angle & Speed
 	this.a = 0.0;
-	this.s = 0.0;
+	this.s = 0;
 }
 
 Ball.prototype = {
