@@ -4,6 +4,9 @@ define(['render','calc','cfg'], function(Render,Calc,cfg){
 var x = 0;
 var y = 0;
 
+// Repeat counter
+var r = 0;
+
 function Ball(i, container)
 {
 	// Index of the Ball in the Balls.list
@@ -31,8 +34,11 @@ function Ball(i, container)
 
 Ball.prototype = {
 
-// Reference te the Sprite object.
-ball: null,
+// Reference to the Sprite object.
+sprite: null,
+
+// Reference to the container object.
+list: null,
 
 init: function BallInit()
 {
@@ -51,6 +57,11 @@ aimTo: function BallAimTo(a)
 	return this;
 },
 
+rotateTo: function BallRotateTo(a)
+{
+    this.a = Calc.mod(this.a + a);
+},
+
 throwOut: function BallThrowOut(s)
 {
 	this.s += s;
@@ -59,29 +70,36 @@ throwOut: function BallThrowOut(s)
 
 update: function BallUpdate()
 {
+    // XXX: This only work with one ball.
+	Render.cover(Render.balls,'rgba(0,0,0,0.03)');
 	// TODO: cache this result
 	//x = Calc.cos[this.a];
 	//y = Calc.sin[this.a];
 
-	this.x += this.sx;
-	this.y += this.sy;
-
-    x = ~~this.x;
-    y = ~~this.y;
-
-    if(x != this.lx || y != this.ly)
+    r = this.r;
+    if(r) while(r--)
     {
-        this.lx = x;
-        this.ly = y;
-        Render.drawImage(Render.balls, x, y, Ball.ball);
+        this.x += this.sx;
+        this.y += this.sy;
+
+        // This should create garbage
+        x = ~~this.x;
+        y = ~~this.y;
+
+        if(x != this.lx || y != this.ly)
+        {
+            this.lx = x;
+            this.ly = y;
+            // XXX: This only work with one ball.
+	        //Render.cover(Render.balls,'rgba(0,0,0,0.01)');
+            Render.drawImage(Render.balls, x, y, Ball.sprite);
+        }
     }
-
-
 },
 
 free: function BallFree()
 {
-	Ball.Balls.freeOne(this.i);
+	Ball.list.freeOne(this.i);
 }
 
 };

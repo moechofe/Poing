@@ -29,9 +29,8 @@ start: function SingleStart()
 draw: function SingleDraw()
 {
     Balls.update();
-    /*
-	Render.cover(Render.balls,'rgba(0,0,0,0.1)');
-	b = Balls.len;
+	//Render.cover(Render.balls,'rgba(0,0,0,0.1)');
+	/*b = Balls.len;
 	while(b--)
 		if(Balls.used[b])
 		{

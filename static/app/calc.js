@@ -12,6 +12,11 @@ function Calc()
 
 Calc.prototype = {
 
+mod: function CalcMod(a)
+{
+    return a % divisions;
+},
+
 init: function CalcInit()
 {
 	for(var i=0, m=2*Math.PI/divisions, precision = divisions; i<divisions; i++)
