@@ -24,6 +24,8 @@ wallThickness: 1,
 paddleThickness: 3,
 safeWidth: 60,
 
+ballsCover: 'rgba(0,0,0,0.125)'
+
 };
 
 config = new Config;

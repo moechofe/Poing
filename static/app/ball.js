@@ -16,16 +16,16 @@ function Ball(i, container)
 	this.rx = 0.0;
 	this.ry = 0.0;
 
-    // Cached speed
-    this.sx = 0.5;
-    this.sy = 0.25;
+	// Cached speed
+	this.sx = 0.5;
+	this.sy = 0.25;
 
-    // Last displayed coords in pixel
-    this.lx = 0;
-    this.ly = 0;
+	// Last displayed coords in pixel
+	this.lx = 0;
+	this.ly = 0;
 
-    // Iteration aka speed
-    this.r = 3;
+	// Iteration aka speed
+	this.r = 3;
 
 	// Angle & Speed
 	this.a = 0.0;
@@ -59,7 +59,7 @@ aimTo: function BallAimTo(a)
 
 rotateTo: function BallRotateTo(a)
 {
-    this.a = Calc.mod(this.a + a);
+	this.a = Calc.mod(this.a + a);
 },
 
 throwOut: function BallThrowOut(s)
@@ -70,31 +70,31 @@ throwOut: function BallThrowOut(s)
 
 update: function BallUpdate()
 {
-    // XXX: This only work with one ball.
-	Render.cover(Render.balls,'rgba(0,0,0,0.03)');
+	// XXX: This only work with one ball.
+	Render.cover(Render.balls,cfg.ballsCover);
 	// TODO: cache this result
 	//x = Calc.cos[this.a];
 	//y = Calc.sin[this.a];
 
-    r = this.r;
-    if(r) while(r--)
-    {
-        this.x += this.sx;
-        this.y += this.sy;
+	r = this.r;
+	if(r) while(r--)
+	{
+		this.x += this.sx;
+		this.y += this.sy;
 
-        // This should create garbage
-        x = ~~this.x;
-        y = ~~this.y;
+		// This should create garbage
+		x = ~~this.x;
+		y = ~~this.y;
 
-        if(x != this.lx || y != this.ly)
-        {
-            this.lx = x;
-            this.ly = y;
-            // XXX: This only work with one ball.
-	        //Render.cover(Render.balls,'rgba(0,0,0,0.01)');
-            Render.drawImage(Render.balls, x, y, Ball.sprite);
-        }
-    }
+		if(x != this.lx || y != this.ly)
+		{
+			this.lx = x;
+			this.ly = y;
+			// XXX: This only work with one ball.
+			//Render.cover(Render.balls,'rgba(0,0,0,0.01)');
+			Render.drawImage(Render.balls, x, y, Ball.sprite);
+		}
+	}
 },
 
 free: function BallFree()

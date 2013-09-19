@@ -24,11 +24,12 @@ start: function SingleStart()
 {
 	console.log('Start single game');
 	window.requestAnimationFrame(draw);
+	Render.cover(Render.balls,'rgba(0,0,0,1)');
 },
 
 draw: function SingleDraw()
 {
-    Balls.update();
+	Balls.update();
 	//Render.cover(Render.balls,'rgba(0,0,0,0.1)');
 	/*b = Balls.len;
 	while(b--)

@@ -24,7 +24,7 @@ Balls.prototype = {
 init: function BallsInit(ball_sprite)
 {
 	Ball.sprite = ball_sprite;
-    Ball.container = balls;
+	Ball.container = balls;
 	i = this.len;
 	while(i--)
 	{
@@ -44,10 +44,10 @@ reset: function BallsReset()
 
 update: function BallsUpdate()
 {
-    i = this.len
-    while(i--)
-        if(this.used[i])
-            this.list[i].update();
+	i = this.len
+	while(i--)
+		if(this.used[i])
+			this.list[i].update();
 },
 
 setUpLeft: function BallsSetUpLeft()
