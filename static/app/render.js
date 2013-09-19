@@ -2,20 +2,15 @@ define(['cfg','env'], function(cfg,env){
 
 var render = null;
 
-function InstallRequestAnimationFrame(window) {
-};
-
 function Render()
 {
-	this.canvas = {
-		balls: null
-	};
-
+	// Size of all the canvas
 	this.width = 0;
 	this.height = 0;
 
 	// 2D context objects
 	this.balls = null;
+	this.collides = null;
 
 	this.scale = 0;
 }
@@ -27,15 +22,25 @@ init: function RenderInit(id, document, window, width, height)
 	var canvas = document.getElementById(id);
 
 	var balls = document.createElement('canvas');
-	balls.width = width;
-	balls.height = height;
+	var collides = document.createElement('canvas');
 
+	var scale = 1;
+
+	this.width = width * scale;
+	this.height = height * scale;
+
+	this.scale = scale - 1;
+
+	balls.width = this.width;
+	balls.height = this.height;
+	collides.width = this.width;
+	collides.height = this.height;
+
+	canvas.appendChild(collides);
 	canvas.appendChild(balls);
 
 	this.balls = balls.getContext('2d');
-
-	this.width = width * this.scale;
-	this.height = height * this.scale;
+	this.collides = collides.getContext('2d');
 
 	var lastTime = 0;
 	var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -73,6 +78,12 @@ cover: function RenderClear(context, style)
 {
 	context.fillStyle = style;
 	context.fillRect(0,0,context.canvas.width,context.canvas.height);
+},
+
+rect: function RenderRect(context, x,y,w,h, style)
+{
+	context.fillStyle = style;
+	context.clearRect(x,y,w,h);
 },
 
 drawImage: function RenderDrawImage(context, x, y, sprite)

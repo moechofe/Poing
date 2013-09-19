@@ -46,8 +46,8 @@ init: function BallInit()
 
 placeAt: function BallPlaceAt(x,y)
 {
-	this.x = x;
-	this.y = y;
+	this.rx = x;
+	this.ry = y;
 	return this;
 },
 
@@ -70,30 +70,32 @@ throwOut: function BallThrowOut(s)
 
 update: function BallUpdate()
 {
-	// XXX: This only work with one ball.
 	Render.cover(Render.balls,cfg.ballsCover);
-	// TODO: cache this result
-	//x = Calc.cos[this.a];
-	//y = Calc.sin[this.a];
 
+	// Loop using the speed of the ball
 	r = this.r;
 	if(r) while(r--)
 	{
-		this.x += this.sx;
-		this.y += this.sy;
+		// Update real coords
+		this.rx += this.sx;
+		this.ry += this.sy;
 
+		// Pixelate the coords
 		// This should create garbage
-		x = ~~this.x;
-		y = ~~this.y;
+		x = ~~this.rx;
+		y = ~~this.ry;
 
+		// If a new ball can be rendered at a new position
 		if(x != this.lx || y != this.ly)
 		{
+			// Cache the new positions
 			this.lx = x;
 			this.ly = y;
-			// XXX: This only work with one ball.
-			//Render.cover(Render.balls,'rgba(0,0,0,0.01)');
+
 			Render.drawImage(Render.balls, x, y, Ball.sprite);
 		}
+		// Avoid following iteration
+		else break;
 	}
 },
 

@@ -5,7 +5,7 @@ html(lang="en")
 
 	body
 
-		#board
+		#screen
 			#canvas
 
 		script(src="lib/require.js")

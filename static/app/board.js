@@ -1,4 +1,4 @@
-define(['tiles','cfg','env'], function(Tiles,cfg,env){
+define(['tiles','render','cfg','env'], function(Tiles,Render,cfg,env){
 
 var board = null;
 
@@ -12,6 +12,11 @@ Board.prototype = {
 reset: function BoardReset(tileX)
 {
 	this.tileX = tileX;
+},
+
+update: function BoardUpdate()
+{
+	Render.rect(Render.balls, 2,2,20,2, cfg.collidesBoard);
 },
 
 // Compute the size of the board.

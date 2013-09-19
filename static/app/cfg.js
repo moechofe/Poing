@@ -24,7 +24,11 @@ wallThickness: 1,
 paddleThickness: 3,
 safeWidth: 60,
 
-ballsCover: 'rgba(0,0,0,0.125)'
+ballsClear: 'rgba(0,0,0,1)',
+ballsCover: 'rgba(0,0,0,0.125)',
+
+collidesBoard: 'rgb(0,0,255)',
+collidesWall: 'rgb(0,255,0)'
 
 };
 
