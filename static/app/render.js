@@ -10,6 +10,7 @@ function Render()
 
 	// 2D context objects
 	this.balls = null;
+	this.walls = null;
 	this.collides = null;
 
 	this.scale = 0;
@@ -22,6 +23,7 @@ init: function RenderInit(id, document, window, width, height)
 	var canvas = document.getElementById(id);
 
 	var balls = document.createElement('canvas');
+	var walls = document.createElement('canvas');
 	var collides = document.createElement('canvas');
 
 	var scale = 1;
@@ -33,13 +35,17 @@ init: function RenderInit(id, document, window, width, height)
 
 	balls.width = this.width;
 	balls.height = this.height;
+	walls.width = this.width;
+	walls.height = this.height;
 	collides.width = this.width;
 	collides.height = this.height;
 
 	canvas.appendChild(collides);
+	canvas.appendChild(walls);
 	canvas.appendChild(balls);
 
 	this.balls = balls.getContext('2d');
+	this.walls = walls.getContext('2d');
 	this.collides = collides.getContext('2d');
 
 	var lastTime = 0;

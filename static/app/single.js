@@ -36,7 +36,6 @@ draw: function SingleDraw()
 {
 	Balls.update();
 
-	Board.update();
 	window.requestAnimationFrame(draw);
 }
 

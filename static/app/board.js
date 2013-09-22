@@ -16,6 +16,9 @@ reset: function BoardReset(tileX)
 
 update: function BoardUpdate()
 {
+	Render.rect(Render.walls, 0,0, this.width,cfg.borderThickness, cfg.borderStyle);
+	Render.rect(Render.walls, 0,this.height-cfg.borderThickness, this.width,cfg.borderThickness, cfg.borderStyle);
+
 	Render.rect(Render.collides, 2,180,300,2, cfg.collidesBoard);
 	Render.rect(Render.collides, 304,2,2,180, cfg.collidesBoard);
 	Render.rect(Render.collides, 0,0,2,180, cfg.collidesBoard);

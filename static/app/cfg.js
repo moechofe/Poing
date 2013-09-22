@@ -20,6 +20,7 @@ tileRows: 15,
 tileCols: 27,
 
 borderThickness: 1,
+borderStyle: '#fff',
 wallThickness: 1,
 paddleThickness: 3,
 safeWidth: 60,
