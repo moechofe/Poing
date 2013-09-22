@@ -7,6 +7,17 @@ var y = 0;
 // Repeat counter
 var r = 0;
 
+// Index in the cfg.collidesReactions object
+var c = 0;
+
+// Reference to a cfg.collidesReaction object
+var reaction = null;
+
+// Index in the matchModel function
+var i = 0;
+
+var match = true;
+
 function Ball(i, container)
 {
 	// Index of the Ball in the Balls.list
@@ -93,10 +104,37 @@ update: function BallUpdate()
 			this.ly = y;
 
 			Render.drawImage(Render.balls, x, y, Ball.sprite);
+
+			// Test collisions
+			x--; y--;
+			// This will create garbage
+			var pixels = Render.collides.getImageData(x,y,3,3).data;
+			var model = new Uint32Array(pixels.buffer)
+
+			for(c=0; c<cfg.collidesReactions.length; c++)
+			{
+				reaction = cfg.collidesReactions[c];
+				i = 9;
+				match = this.matchModel(reaction.model, model);
+				if(match)
+				{
+					reaction.apply(this);
+				}
+			}
+
 		}
 		// Avoid following iteration
 		else break;
 	}
+},
+
+matchModel: function matchModel(model, source)
+{
+	i = 9;
+	while(i--)
+		if((model[i] && !source[i]) || (!model[i] && source[i]))
+			return false;
+	return true;
 },
 
 free: function BallFree()

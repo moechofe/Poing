@@ -16,7 +16,10 @@ reset: function BoardReset(tileX)
 
 update: function BoardUpdate()
 {
-	Render.rect(Render.balls, 2,2,20,2, cfg.collidesBoard);
+	Render.rect(Render.collides, 2,180,300,2, cfg.collidesBoard);
+	Render.rect(Render.collides, 304,2,2,180, cfg.collidesBoard);
+	Render.rect(Render.collides, 0,0,2,180, cfg.collidesBoard);
+	Render.rect(Render.collides, 0,0,300,2, cfg.collidesBoard);
 },
 
 // Compute the size of the board.

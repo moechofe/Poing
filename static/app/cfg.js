@@ -27,8 +27,18 @@ safeWidth: 60,
 ballsClear: 'rgba(0,0,0,1)',
 ballsCover: 'rgba(0,0,0,0.125)',
 
-collidesBoard: 'rgb(0,0,255)',
-collidesWall: 'rgb(0,255,0)'
+collidesBoard: '#00f',
+collidesWall: 'rgb(0,255,0)',
+
+collidesReactions: {
+	length: 4,
+	// Horzontal wall
+	0: {model:new Uint8Array([0,0,0, 0,0,0, 1,1,1]), apply:function(b){b.sy = -b.sy;}},
+	1: {model:new Uint8Array([1,1,1, 0,0,0, 0,0,0]), apply:function(b){b.sy = -b.sy;}},
+	// Vertical wall
+	2: {model:new Uint8Array([0,0,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx;}},
+	3: {model:new Uint8Array([1,0,0, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx;}}
+}
 
 };
 

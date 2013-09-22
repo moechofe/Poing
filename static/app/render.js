@@ -83,7 +83,7 @@ cover: function RenderClear(context, style)
 rect: function RenderRect(context, x,y,w,h, style)
 {
 	context.fillStyle = style;
-	context.clearRect(x,y,w,h);
+	context.fillRect(x,y,w,h);
 },
 
 drawImage: function RenderDrawImage(context, x, y, sprite)
