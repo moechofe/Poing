@@ -13,6 +13,9 @@ function Balls(length)
 	// Counter of free Balls
 	this.free = length;
 
+	// Counter of used Balls
+	this.num = 0;
+
 	// Index of the next available Ball
 	this.next = 0;
 
@@ -47,7 +50,7 @@ update: function BallsUpdate()
 	i = this.len
 	while(i--)
 		if(this.used[i])
-			this.list[i].update();
+			this.list[i].update(this.num);
 },
 
 setUpLeft: function BallsSetUpLeft()
@@ -70,6 +73,7 @@ addOne: function BallsAddOne()
 {
 	if(this.nextFree())
 	{
+		this.num++;
 		this.free--;
 		this.used[this.next] = true;
 		return this.list[this.next];
@@ -81,6 +85,7 @@ freeOne: function BallsFreeOne(index)
 {
 	this.used[index] = true;
 	this.free++;
+	this.num--;
 }
 
 };

@@ -79,9 +79,9 @@ throwOut: function BallThrowOut(s)
 	return this;
 },
 
-update: function BallUpdate()
+update: function BallUpdate(num)
 {
-	Render.cover(Render.balls,cfg.ballsCover);
+	Render.cover(Render.balls,cfg.ballsCoverAlpha/num);
 
 	// Loop using the speed of the ball
 	r = this.r;
