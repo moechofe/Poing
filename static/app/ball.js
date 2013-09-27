@@ -36,7 +36,7 @@ function Ball(i, container)
 	this.ly = 0;
 
 	// Iteration aka speed
-	this.r = 3;
+	this.r = 30;
 
 	// Angle & Speed
 	this.a = 0.0;
@@ -81,8 +81,6 @@ throwOut: function BallThrowOut(s)
 
 update: function BallUpdate(num)
 {
-	Render.cover(Render.balls,cfg.ballsCoverAlpha/num);
-
 	// Loop using the speed of the ball
 	r = this.r;
 	if(r) while(r--)

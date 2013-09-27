@@ -1,4 +1,4 @@
-define(['ball','cfg','env'], function(Ball,cfg,env){
+define(['ball','render','cfg','env'], function(Ball,Render,cfg,env){
 
 var i = 0;
 var balls = null;
@@ -47,6 +47,7 @@ reset: function BallsReset()
 
 update: function BallsUpdate()
 {
+    Render.cover(Render.balls, cfg.ballsCover);
 	i = this.len
 	while(i--)
 		if(this.used[i])

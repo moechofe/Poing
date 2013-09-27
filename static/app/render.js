@@ -80,9 +80,9 @@ clear: function RenderClear(context)
 	context.clearRect(0,0,context.canvas.width,context.canvas.height);
 },
 
-cover: function RenderClear(context, alpha)
+cover: function RenderClear(context, style)
 {
-	context.fillStyle = 'rgba(0,0,0,'+alpha+')';
+	context.fillStyle = style;
 	context.fillRect(0,0,context.canvas.width,context.canvas.height);
 },
 
