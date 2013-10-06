@@ -39,7 +39,12 @@ collidesReactions: {
 	1: {model:new Uint8Array([1,1,1, 0,0,0, 0,0,0]), apply:function(b){b.sy = -b.sy;}},
 	// Vertical wall
 	2: {model:new Uint8Array([0,0,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx;}},
-	3: {model:new Uint8Array([1,0,0, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx;}}
+	3: {model:new Uint8Array([1,0,0, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx;}},
+	// Corner
+	4: {model:new Uint8Array([0,0,1, 0,0,1, 1,1,1]), apply:function(b){b.sx = -b.sx; by = -b.sy;}},
+	5: {model:new Uint8Array([1,0,0, 1,0,0, 1,1,1]), apply:function(b){b.sx = -b.sx; by = -b.sy;}},
+	6: {model:new Uint8Array([1,1,1, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx; by = -b.sy;}},
+	7: {model:new Uint8Array([1,1,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx; by = -b.sy;}},
 }
 
 };

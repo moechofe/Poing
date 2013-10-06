@@ -14,7 +14,7 @@ Calc.prototype = {
 
 mod: function CalcMod(a)
 {
-    return a % divisions;
+		return a % divisions;
 },
 
 init: function CalcInit()

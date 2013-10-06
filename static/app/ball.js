@@ -1,4 +1,5 @@
 define(['render','calc','cfg','env'], function(Render,Calc,cfg,env){
+// {{{ - locals
 
 // Current computed coords in pixel
 var x = 0;
@@ -18,6 +19,9 @@ var i = 0;
 
 var match = true;
 
+// }}}
+// {{{ Ball()
+
 function Ball(i, container)
 {
 	// Index of the Ball in the Balls.list
@@ -28,22 +32,23 @@ function Ball(i, container)
 	this.ry = 0.0;
 
 	// Cached speed
-	this.sx = 0.5;
-	this.sy = 0.25;
+	this.sx = 0.0;
+	this.sy = 0.0;
 
 	// Last displayed coords in pixel
 	this.lx = 0;
 	this.ly = 0;
 
 	// Iteration aka speed
-	this.r = 30;
+	this.r = 5;
 
-	// Angle & Speed
+	// Angle
 	this.a = 0.0;
-	this.s = 0;
 }
 
+// }}}
 Ball.prototype = {
+// {{{ - properties
 
 // Reference to the Sprite object.
 sprite: null,
@@ -51,9 +56,15 @@ sprite: null,
 // Reference to the container object.
 list: null,
 
+// }}}
+// {{{ .init()
+
 init: function BallInit()
 {
 },
+
+// }}}
+// {{{ .placeAt()
 
 placeAt: function BallPlaceAt(x,y)
 {
@@ -62,10 +73,10 @@ placeAt: function BallPlaceAt(x,y)
 	return this;
 },
 
-aimTo: function BallAimTo(a)
+rotateAt: function BallAimTo(a)
 {
 	this.a = a;
-	return this;
+	return this.computeSpeed();
 },
 
 rotateTo: function BallRotateTo(a)
@@ -73,11 +84,15 @@ rotateTo: function BallRotateTo(a)
 	this.a = Calc.mod(this.a + a);
 },
 
-throwOut: function BallThrowOut(s)
+computeSpeed: function BallComputeSpeed()
 {
-	this.s += s;
+	this.sx = Calc.cos[this.a];
+	this.sy = Calc.sin[this.a];
 	return this;
 },
+
+// }}}
+// {{{ .update()
 
 update: function BallUpdate(num)
 {
@@ -127,6 +142,9 @@ update: function BallUpdate(num)
 	}
 },
 
+// }}}
+// {{{ .matchModel()
+
 matchModel: function matchModel(model, source)
 {
 	i = 9;
@@ -136,13 +154,19 @@ matchModel: function matchModel(model, source)
 	return true;
 },
 
+// }}}
+// {{{ .free()
+
 free: function BallFree()
 {
 	Ball.list.freeOne(this.i);
 }
 
+// }}}
 };
+// {{{ - instance
 
 return Ball;
 
+// }}}
 });

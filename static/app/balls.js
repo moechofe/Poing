@@ -47,7 +47,7 @@ reset: function BallsReset()
 
 update: function BallsUpdate()
 {
-    Render.cover(Render.balls, cfg.ballsCover);
+	Render.cover(Render.balls, cfg.ballsCover);
 	i = this.len
 	while(i--)
 		if(this.used[i])
