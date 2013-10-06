@@ -1,4 +1,4 @@
-define(['render','calc','cfg'], function(Render,Calc,cfg){
+define(['render','calc','cfg','env'], function(Render,Calc,cfg,env){
 
 // Current computed coords in pixel
 var x = 0;
@@ -101,7 +101,8 @@ update: function BallUpdate(num)
 			this.lx = x;
 			this.ly = y;
 
-			Render.drawImage(Render.balls, x, y, Ball.sprite);
+			Render.drawImage(Render.balls, x-1, y-1, Ball.sprite);
+			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
 			// Test collisions
 			x--; y--;

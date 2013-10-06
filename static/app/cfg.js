@@ -22,6 +22,7 @@ tileCols: 27,
 borderThickness: 1,
 borderStyle: '#fff',
 wallThickness: 1,
+wallStyle: '#00f',
 paddleThickness: 3,
 safeWidth: 60,
 
@@ -29,7 +30,7 @@ ballsClear: 'rgba(0,0,0,1)',
 ballsCover: 'rgba(0,0,0,0.125)',
 
 collidesBoard: '#00f',
-collidesWall: 'rgb(0,255,0)',
+collidesWall: '#0f0',
 
 collidesReactions: {
 	length: 4,

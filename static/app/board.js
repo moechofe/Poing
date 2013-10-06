@@ -19,10 +19,10 @@ update: function BoardUpdate()
 	Render.rect(Render.walls, 0,0, this.width,cfg.borderThickness, cfg.borderStyle);
 	Render.rect(Render.walls, 0,this.height-cfg.borderThickness, this.width,cfg.borderThickness, cfg.borderStyle);
 
-	Render.rect(Render.collides, 2,180,300,2, cfg.collidesBoard);
-	Render.rect(Render.collides, 304,2,2,180, cfg.collidesBoard);
-	Render.rect(Render.collides, 0,0,2,180, cfg.collidesBoard);
-	Render.rect(Render.collides, 0,0,300,2, cfg.collidesBoard);
+	Render.rect(Render.collides, 0,0, this.width,cfg.borderThickness, cfg.collidesBoard);
+	Render.rect(Render.collides, 0,this.height-cfg.borderThickness, this.width,cfg.borderThickness, cfg.collidesBoard);
+	Render.rect(Render.collides, 0,cfg.borderThickness, cfg.wallThickness,this.height-cfg.borderThickness-cfg.borderThickness, cfg.collidesWall);
+	Render.rect(Render.collides, this.width-cfg.wallThickness,cfg.borderThickness, this.width,this.height-cfg.borderThickness-cfg.borderThickness, cfg.collidesWall);
 },
 
 // Compute the size of the board.
