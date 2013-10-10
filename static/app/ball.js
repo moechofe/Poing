@@ -22,7 +22,7 @@ var match = true;
 // }}}
 // {{{ Ball()
 
-function Ball(i, container)
+function Ball(i)
 {
 	// Index of the Ball in the Balls.list
 	this.i = i;
@@ -54,7 +54,7 @@ Ball.prototype = {
 sprite: null,
 
 // Reference to the container object.
-list: null,
+container: null,
 
 // }}}
 // {{{ .init()
@@ -64,7 +64,7 @@ init: function BallInit()
 },
 
 // }}}
-// {{{ .placeAt()
+// {{{ .placeAt(), .rotateAt(), .rotateTo(), .addIteration()
 
 placeAt: function BallPlaceAt(x,y)
 {
@@ -83,6 +83,15 @@ rotateTo: function BallRotateTo(a)
 {
 	this.a = Calc.mod(this.a + a);
 },
+
+addIteration: function BallAddIteration(r)
+{
+	this.r += r;
+	if(this.r<0) this.r = 1;
+},
+
+// }}}
+// {{{ .computeSpeed()
 
 computeSpeed: function BallComputeSpeed()
 {
@@ -159,7 +168,7 @@ matchModel: function matchModel(model, source)
 
 free: function BallFree()
 {
-	Ball.list.freeOne(this.i);
+	Ball.container.freeOne(this.i);
 }
 
 // }}}

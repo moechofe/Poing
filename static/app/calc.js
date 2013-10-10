@@ -21,8 +21,8 @@ init: function CalcInit()
 {
 	for(var i=0, m=2*Math.PI/divisions, precision = divisions; i<divisions; i++)
 	{
-		this.cos[i] = ~~( Math.cos(i*m) * precision ) / precision;
-		this.sin[i] = ~~( Math.sin(i*m) * precision ) / precision;
+		this.cos[i] = ~~( Math.cos(i*m*0.95) * precision ) / precision;
+		this.sin[i] = ~~( Math.sin(i*m*0.95) * precision ) / precision;
 	}
 }
 

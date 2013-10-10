@@ -1,5 +1,11 @@
 define(['cfg','env'], function(cfg,env){
 
+// For sprite scale computation.
+var x = 0;
+var y = 0;
+var w = 0;
+var h = 0;
+
 var render = null;
 
 function Render()
@@ -92,9 +98,22 @@ rect: function RenderRect(context, x,y,w,h, style)
 	context.fillRect(x,y,w,h);
 },
 
-drawImage: function RenderDrawImage(context, x, y, sprite)
+drawImage: function RenderDrawImage(context, dx,dy, sprite)
 {
-	context.drawImage(sprite[this.scale], x, y);
+	context.drawImage(sprite[this.scale], dx,dy);
+},
+
+drawSprite: function RenderDrawSprite(context, dx,dy, sprite)
+{
+	x = dx * this.scale;
+	y = dy * this.scale;
+	w = sprite.w * this.scale;
+	h = sprite.h * this.scale;
+	context.drawImage(sprite[this.scale],
+		sprite.x, sprite.y,
+		sprite.w, sprite.h,
+		x, y,
+		w, h);
 }
 
 };

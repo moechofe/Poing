@@ -18,10 +18,10 @@ reset: function SingleReset()
 {
 	Balls.reset().setUpLeft().rotateAt(5);
 	Balls.setUpLeft().placeAt(10,10).rotateAt(10);
-//	Balls.setUpLeft().placeAt(20,10).throwOut(3);
-//	Balls.setUpLeft().placeAt(30,10).throwOut(3);
-//	Balls.setUpLeft().placeAt(50,10).throwOut(3);
-//	Balls.setUpLeft().placeAt(80,10).throwOut(3);
+	Balls.setUpLeft().placeAt(20,10).rotateAt(22).addIteration(-3);
+	Balls.setUpLeft().placeAt(30,10).rotateAt(33).addIteration(2);
+	Balls.setUpLeft().placeAt(50,10).rotateAt(34).addIteration(-1);
+	Balls.setUpLeft().placeAt(80,10).rotateAt(57).addIteration(-4);
 	return this;
 },
 
