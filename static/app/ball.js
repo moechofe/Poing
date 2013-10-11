@@ -125,7 +125,7 @@ update: function BallUpdate(num)
 			this.lx = x;
 			this.ly = y;
 
-			Render.drawImage(Render.balls, x-1, y-1, Ball.sprite);
+			Render.drawSprite(Render.balls, x-1, y-1, Ball.sprite);
 			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
 			// Test collisions

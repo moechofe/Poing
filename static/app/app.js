@@ -16,7 +16,7 @@ App.prototype = {
 init: function AppInit(document, window)
 {
 	Render.init('canvas', document, window, Board.width, Board.height);
-	Game.init();
+	Game.init(2);
 
 	game = this.game.bind(this);
 	warm = this.warm.bind(this);

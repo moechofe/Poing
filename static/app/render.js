@@ -3,8 +3,9 @@ define(['cfg','env'], function(cfg,env){
 // For sprite scale computation.
 var x = 0;
 var y = 0;
-var w = 0;
-var h = 0;
+
+// Reference to the actual drawn Frame.
+var f = null;
 
 var render = null;
 
@@ -32,12 +33,10 @@ init: function RenderInit(id, document, window, width, height)
 	var walls = document.createElement('canvas');
 	var collides = document.createElement('canvas');
 
-	var scale = 1;
+	this.scale = 1;
 
-	this.width = width * scale;
-	this.height = height * scale;
-
-	this.scale = scale - 1;
+	this.width = width * this.scale;
+	this.height = height * this.scale;
 
 	balls.width = this.width;
 	balls.height = this.height;
@@ -98,22 +97,16 @@ rect: function RenderRect(context, x,y,w,h, style)
 	context.fillRect(x,y,w,h);
 },
 
-drawImage: function RenderDrawImage(context, dx,dy, sprite)
-{
-	context.drawImage(sprite[this.scale], dx,dy);
-},
-
 drawSprite: function RenderDrawSprite(context, dx,dy, sprite)
 {
+	f = sprite[this.scale];
 	x = dx * this.scale;
 	y = dy * this.scale;
-	w = sprite.w * this.scale;
-	h = sprite.h * this.scale;
-	context.drawImage(sprite[this.scale],
-		sprite.x, sprite.y,
-		sprite.w, sprite.h,
+	context.drawImage(f.img,
+		f.x, f.y,
+		f.w, f.h,
 		x, y,
-		w, h);
+		f.w, f.h);
 }
 
 };
