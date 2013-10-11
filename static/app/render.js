@@ -7,6 +7,7 @@ var y = 0;
 // Reference to the actual drawn Frame.
 var f = null;
 
+// Singleton instance of the Render object.
 var render = null;
 
 function Render()

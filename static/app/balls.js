@@ -1,6 +1,8 @@
 define(['ball','render','cfg','env'], function(Ball,Render,cfg,env){
 
 var i = 0;
+
+// Singleton instance of the Balls object.
 var balls = null;
 
 function Balls(length)

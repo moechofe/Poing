@@ -19,6 +19,12 @@ var i = 0;
 
 var match = true;
 
+// Reference to the Sprite object that contain the Balls gfx.
+var sprite = null;
+
+// Reference to the container object.
+var container = null;
+
 // }}}
 // {{{ Ball()
 
@@ -47,16 +53,10 @@ function Ball(i)
 }
 
 // }}}
-Ball.prototype = {
-// {{{ - properties
-
-// Reference to the Sprite object.
-sprite: null,
-
-// Reference to the container object.
-container: null,
+// {{{ sprite, container
 
 // }}}
+Ball.prototype = {
 // {{{ .init()
 
 init: function BallInit()
@@ -125,7 +125,7 @@ update: function BallUpdate(num)
 			this.lx = x;
 			this.ly = y;
 
-			Render.drawSprite(Render.balls, x-1, y-1, Ball.sprite);
+			Render.drawSprite(Render.balls, x-1, y-1, sprite);
 			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
 			// Test collisions
@@ -168,11 +168,22 @@ matchModel: function matchModel(model, source)
 
 free: function BallFree()
 {
-	Ball.container.freeOne(this.i);
+	container.freeOne(this.i);
 }
 
 // }}}
 };
+// {{{ sprite, container
+
+Ball.__defineSetter__('sprite', function BallSpriteSetter(s){
+	sprite = s;
+});
+
+Ball.__defineSetter__('container', function BallContainerSetter(c){
+	container = c;
+});
+
+// }}}
 // {{{ - instance
 
 return Ball;

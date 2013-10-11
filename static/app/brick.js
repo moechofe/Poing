@@ -1,24 +1,21 @@
 define(['render'], function(Render){
-
 // {{{ Brick()
 
-function Brick(i)
+function Brick(col, row)
 {
 	// Index of the Brick in the Bricks.list
-	this.i = i;
+	this.col = col;
+	this.row = row;
 }
+
+// Reference to the Sprite object that contain the Bricks gfx.
+var sprite = null;
+
+// Reference to the container object.
+var container = null;
 
 // }}}
 Brick.prototype = {
-// {{{ .sprites, .container
-
-// List of references to the Sprite objects.
-sprites: null,
-
-// Reference to the Sprite object.
-container: null,
-
-// }}}
 // {{{ .init()
 
 init: function BrickInit()
@@ -26,7 +23,19 @@ init: function BrickInit()
 }
 
 // }}}
-
 };
+// {{{ sprite, container
+
+Brick.__defineSetter__('sprite', function BrickSpriteSetter(s){
+	sprite = s;
+});
+
+Brick.__defineSetter__('container', function BrickContainerSetter(c){
+	container = c;
+});
+
+// }}}
+
+return Brick;
 
 });

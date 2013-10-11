@@ -1,17 +1,17 @@
-define(['tiles','render','cfg','env'], function(Tiles,Render,cfg,env){
+define(['bricks','render','cfg','env'], function(Bricks,Render,cfg,env){
 
 var board = null;
 
 function Board()
 {
-	this.tileX = 0;
+	this.brick_pos = 0;
 }
 
 Board.prototype = {
 
-reset: function BoardReset(tileX)
+reset: function BoardReset(brick_pos)
 {
-	this.tileX = tileX;
+	this.brick_pos = brick_pos;
 },
 
 update: function BoardUpdate()
@@ -26,8 +26,8 @@ update: function BoardUpdate()
 },
 
 // Compute the size of the board.
-height: Tiles.height + cfg.borderThickness + cfg.borderThickness,
-width: Tiles.width + cfg.wallThickness + cfg.paddleThickness + cfg.safeWidth*2,
+height: Bricks.height + cfg.borderThickness + cfg.borderThickness,
+width: Bricks.width + cfg.wallThickness + cfg.paddleThickness + cfg.safeWidth*2,
 
 };
 

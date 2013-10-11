@@ -16,8 +16,8 @@ brickWidth: 7,
 brickHeight: 11,
 brickSpace: 1,
 
-tileRows: 15,
-tileCols: 27,
+bricksRows: 15,
+bricksCols: 27,
 
 borderThickness: 1,
 borderStyle: '#fff',
