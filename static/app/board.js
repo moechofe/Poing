@@ -2,17 +2,9 @@ define(['bricks','render','cfg','env'], function(Bricks,Render,cfg,env){
 
 var board = null;
 
-function Board()
-{
-	this.brick_pos = 0;
-}
+function Board() {}
 
 Board.prototype = {
-
-reset: function BoardReset(brick_pos)
-{
-	this.brick_pos = brick_pos;
-},
 
 update: function BoardUpdate()
 {

@@ -1,4 +1,4 @@
-define(['brick','cfg','env'], function(Brick,cfg,env){
+define(['brick','render','cfg','env'], function(Brick,Render,cfg,env){
 
 // For cols and rows iterator.
 var c = 0;
@@ -15,6 +15,9 @@ function Bricks(cols, rows)
 	this.list = new Array(cols);
 	for (c=0; c<cols; c++)
 		this.list[c] = new Array(rows);
+
+
+	this.pos = 0;
 }
 
 Bricks.prototype = {
@@ -31,6 +34,21 @@ init: function BricksInit(bricks_sprite)
 	for (c=0; c<this.cols; c++)
 		for (r=0; r<this.rows; r++)
 			this.list[c][r] = new Brick(c,r);
+},
+
+reset: function BricksReset()
+{
+},
+
+setUpLeft: function BricksSetUpLeft()
+{
+
+},
+
+placeOne: function BricksPlaceOne(i,c,r)
+{
+
+			Render.drawSprite(Render.balls, x-1, y-1, sprite);
 }
 
 };

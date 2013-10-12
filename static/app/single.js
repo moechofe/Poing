@@ -1,4 +1,4 @@
-define(['board','balls','game','render','cfg','env'], function(Board,Balls,Game,Render,cfg,env){
+define(['bricks','board','balls','game','render','cfg','env'], function(Bricks,Board,Balls,Game,Render,cfg,env){
 
 var single = null;
 var draw = null;
@@ -22,6 +22,9 @@ reset: function SingleReset()
 	Balls.setUpLeft().placeAt(30,10).rotateAt(33).addIteration(2);
 	Balls.setUpLeft().placeAt(50,10).rotateAt(34).addIteration(-1);
 	Balls.setUpLeft().placeAt(80,10).rotateAt(57).addIteration(-4);
+
+	Bricks.reset().setUpLeft();
+
 	return this;
 },
 
