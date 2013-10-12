@@ -1,4 +1,10 @@
 define(['render'], function(Render){
+
+// Reference to the list that contain the Sprite objects that contain the Bricks gfx.
+var sprites = null;
+
+// Reference to the container object.
+var container = null;
 // {{{ Brick()
 
 function Brick(col, row)
@@ -8,26 +14,25 @@ function Brick(col, row)
 	this.row = row;
 }
 
-// Reference to the Sprite object that contain the Bricks gfx.
-var sprite = null;
-
-// Reference to the container object.
-var container = null;
-
 // }}}
 Brick.prototype = {
 // {{{ .init()
 
 init: function BrickInit()
 {
+},
+
+reset: function BrickReset()
+{
+	// TODO: setup life point behavoir of the brick.
 }
 
 // }}}
 };
 // {{{ sprite, container
 
-Brick.__defineSetter__('sprite', function BrickSpriteSetter(s){
-	sprite = s;
+Brick.__defineSetter__('sprites', function BrickSpritesSetter(s){
+	sprites = s;
 });
 
 Brick.__defineSetter__('container', function BrickContainerSetter(c){

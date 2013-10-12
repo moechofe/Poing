@@ -125,7 +125,7 @@ update: function BallUpdate(num)
 			this.lx = x;
 			this.ly = y;
 
-			Render.drawSprite(Render.balls, x-1, y-1, sprite);
+			Render.drawSprite(Render.balls, x+cfg.ballToOriginX, y+cfg.ballToOriginY, sprite);
 			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
 			// Test collisions
@@ -139,12 +139,8 @@ update: function BallUpdate(num)
 				reaction = cfg.collidesReactions[c];
 				i = 9;
 				match = this.matchModel(reaction.model, model);
-				if(match)
-				{
-					reaction.apply(this);
-				}
+				if(match) reaction.apply(this);
 			}
-
 		}
 		// Avoid following iteration
 		else break;

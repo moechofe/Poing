@@ -94,6 +94,7 @@ cover: function RenderClear(context, style)
 
 rect: function RenderRect(context, x,y,w,h, style)
 {
+	// TODO: must use the scale value.
 	context.fillStyle = style;
 	context.fillRect(x,y,w,h);
 },

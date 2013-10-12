@@ -23,6 +23,7 @@ Sprite.prototype = {
 
 init: function SpriteInit(x,y,w,h)
 {
+	fx=fy=fw=fh=0;
 	for(s=0, a=Array.prototype.slice.call(arguments,4); s<a.length; s++)
 	{
 		fx += x;
