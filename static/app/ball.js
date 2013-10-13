@@ -131,7 +131,11 @@ update: function BallUpdate(num)
 			// Test collisions
 			x--; y--;
 			// This will create garbage
+			console.time('readPixels');
 			var pixels = Render.collides.getImageData(x,y,3,3).data;
+			//var pixels = Render.collides.getImageData(0,0,Render.collides.canvas.width,Render.collides.canvas.height).data;
+			console.timeEnd('readPixels');
+			debugger;
 			var model = new Uint32Array(pixels.buffer)
 
 			for(c=0; c<cfg.collidesReactions.length; c++)

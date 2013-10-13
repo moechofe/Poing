@@ -41,7 +41,7 @@ collidesWall: '#0f0',
 
 collidesReactions: {
 	length: 8,
-	// Horzontal wall
+	// Horizontal wall
 	0: {model:new Uint8Array([0,0,0, 0,0,0, 1,1,1]), apply:function(b){b.sy = -b.sy;}},
 	1: {model:new Uint8Array([1,1,1, 0,0,0, 0,0,0]), apply:function(b){b.sy = -b.sy;}},
 	// Vertical wall
