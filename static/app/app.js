@@ -1,4 +1,4 @@
-define(['single','loading','bricks','balls','board','game','render','calc','env'],function(Single,Loading,Bricks,Balls,Board,Game,Render,Calc,env){
+define(['single','loading','bricks','balls','board','game','collision','render','calc','env'],function(Single,Loading,Bricks,Balls,Board,Game,Collision,Render,Calc,env){
 
 var app = null;
 
@@ -16,6 +16,7 @@ App.prototype = {
 init: function AppInit(document, window)
 {
 	Render.init('canvas', document, window, Board.width, Board.height);
+	Collision.init(Render.collides);
 	Game.init(2);
 
 	game = this.game.bind(this);

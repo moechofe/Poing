@@ -28,8 +28,7 @@ Balls.prototype = {
 
 init: function BallsInit(ball_sprite)
 {
-	Ball.sprite = ball_sprite;
-	Ball.container = balls;
+	Ball.prototype.init(ball_sprite, balls);
 	i = this.len;
 	while(i--)
 	{

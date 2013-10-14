@@ -1,4 +1,4 @@
-define(['render','calc','cfg','env'], function(Render,Calc,cfg,env){
+define(['collision','render','calc','cfg','env'], function(Collision,Render,Calc,cfg,env){
 // {{{ - locals
 
 // Current computed coords in pixel
@@ -53,14 +53,13 @@ function Ball(i)
 }
 
 // }}}
-// {{{ sprite, container
-
-// }}}
 Ball.prototype = {
 // {{{ .init()
 
-init: function BallInit()
+init: function BallInit(ball_sprite, ball_container)
 {
+	sprite = ball_sprite;
+	container = ball_container;
 },
 
 // }}}
@@ -128,14 +127,15 @@ update: function BallUpdate(num)
 			Render.drawSprite(Render.balls, x+cfg.ballToOriginX, y+cfg.ballToOriginY, sprite);
 			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
+			Collision.test(x,y);
 			// Test collisions
 			x--; y--;
 			// This will create garbage
-			console.time('readPixels');
+			//console.time('readPixels');
 			var pixels = Render.collides.getImageData(x,y,3,3).data;
 			//var pixels = Render.collides.getImageData(0,0,Render.collides.canvas.width,Render.collides.canvas.height).data;
-			console.timeEnd('readPixels');
-			debugger;
+			//console.timeEnd('readPixels');
+			//debugger;
 			var model = new Uint32Array(pixels.buffer)
 
 			for(c=0; c<cfg.collidesReactions.length; c++)
@@ -173,18 +173,7 @@ free: function BallFree()
 
 // }}}
 };
-// {{{ sprite, container
-
-Ball.__defineSetter__('sprite', function BallSpriteSetter(s){
-	sprite = s;
-});
-
-Ball.__defineSetter__('container', function BallContainerSetter(c){
-	container = c;
-});
-
-// }}}
-// {{{ - instance
+// {{{ Ball
 
 return Ball;
 

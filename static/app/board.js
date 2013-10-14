@@ -1,4 +1,4 @@
-define(['bricks','render','cfg','env'], function(Bricks,Render,cfg,env){
+define(['bricks','collision','render','cfg','env'], function(Bricks,Collision,Render,cfg,env){
 
 var board = null;
 
@@ -15,6 +15,8 @@ update: function BoardUpdate()
 	Render.rect(Render.collides, 0,this.height-cfg.borderThickness, this.width,cfg.borderThickness, cfg.collidesBoard);
 	Render.rect(Render.collides, 0,cfg.borderThickness, cfg.wallThickness,this.height-cfg.borderThickness-cfg.borderThickness, cfg.collidesWall);
 	Render.rect(Render.collides, this.width-cfg.wallThickness,cfg.borderThickness, this.width,this.height-cfg.borderThickness-cfg.borderThickness, cfg.collidesWall);
+
+	Collision.read();
 },
 
 // Compute the size of the board.
