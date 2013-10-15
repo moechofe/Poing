@@ -40,23 +40,25 @@ collidesBoard: '#00f',
 collidesWall: '#0f0',
 
 collidesReactions: {
-	length: 8,
+	length: 13,
+    // No collision
+    0: {model:new Uint8Array([0,0,0, 0,0,0, 0,0,0]), apply:function(){}},
 	// Horizontal wall
-	0: {model:new Uint8Array([0,0,0, 0,0,0, 1,1,1]), apply:function(b){b.sy = -b.sy;}},
-	1: {model:new Uint8Array([1,1,1, 0,0,0, 0,0,0]), apply:function(b){b.sy = -b.sy;}},
+	1: {model:new Uint8Array([0,0,0, 0,0,0, 1,1,1]), apply:function(b){b.sy = -b.sy;}},
+	2: {model:new Uint8Array([1,1,1, 0,0,0, 0,0,0]), apply:function(b){b.sy = -b.sy;}},
 	// Vertical wall
-	2: {model:new Uint8Array([0,0,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx;}},
-	3: {model:new Uint8Array([1,0,0, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx;}},
+	3: {model:new Uint8Array([0,0,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx;}},
+	4: {model:new Uint8Array([1,0,0, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx;}},
 	// Corner
-	4: {model:new Uint8Array([0,0,1, 0,0,1, 1,1,1]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 4");}},
-	5: {model:new Uint8Array([1,0,0, 1,0,0, 1,1,1]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 5");}},
-	6: {model:new Uint8Array([1,1,1, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 6");}},
-	7: {model:new Uint8Array([1,1,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 7");}},
+	5: {model:new Uint8Array([0,0,1, 0,0,1, 1,1,1]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 4");}},
+	6: {model:new Uint8Array([1,0,0, 1,0,0, 1,1,1]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 5");}},
+	7: {model:new Uint8Array([1,1,1, 1,0,0, 1,0,0]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 6");}},
+	8: {model:new Uint8Array([1,1,1, 0,0,1, 0,0,1]), apply:function(b){b.sx = -b.sx; b.sy = -b.sy; console.log("Gotcha! model 7");}},
 	// Vertex
-	8: {model: new Uint8Array([1,0,0, 0,0,0, 0,0,0]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
-	9: {model: new Uint8Array([0,0,1, 0,0,0, 0,0,0]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
-	10: {model: new Uint8Array([0,0,0, 0,0,0, 1,0,0]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
-	11: {model: new Uint8Array([0,0,0, 0,0,0, 0,0,1]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
+	9: {model: new Uint8Array([1,0,0, 0,0,0, 0,0,0]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
+	10: {model: new Uint8Array([0,0,1, 0,0,0, 0,0,0]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
+	11: {model: new Uint8Array([0,0,0, 0,0,0, 1,0,0]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
+	12: {model: new Uint8Array([0,0,0, 0,0,0, 0,0,1]), apply:function(b){t=b.sx; b.sx = -b.sy; b.sy = -t;}},
 }
 
 };

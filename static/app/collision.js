@@ -1,4 +1,4 @@
-define(['env'], function(env){
+define(['cfg','env'], function(cfg,env){
 
 // References to the canvas context use to check the collisions.
 var collides = null;
@@ -10,16 +10,24 @@ var collision = null;
 var x = 0, y = 0;
 
 // Index in the pixels array.
-var i = 0;
+var p = 0;
 
 // Index in the data array.
-var j = 0;
+var d = 0;
 
 // Two vars used inside a for.
 var m = 0, n = 0;
 
 // Offset from the last index of the previous row of pixel to the first of the next row.
 var o = 0;
+
+var reaction = null;
+
+var match = null;
+
+var i = 0;
+
+var c = 0;
 
 function Collision()
 {
@@ -52,19 +60,43 @@ test: function CollisionTest(px,py)
 
 	o = collides.canvas.width - 3;
 
-	for (n=0; n<3; n++)
+	for(n=0; n<3; n++)
 	{
-		for (m=0; m<3; m++)
+		for(m=0; m<3; m++)
 		{
-			if(this.pixels[p]) debugger;
-			this.data[d] = this.pixels[p];
-			p++;
-			d++;
+			this.data[d] =
+                this.pixels[p+2] ? 1 :
+                this.pixels[p+1] ? 2 :
+                this.pixels[p] ? 3 : 0;
+			p += 4;
+			d += 1;
 		}
 		p += o;
 	}
+
+	for(c=0; c<cfg.collidesReactions.length; c++)
+	{
+		reaction = cfg.collidesReactions[c];
+		match = this.matchModel(reaction.model, this.data);
+		if(match) { reaction.apply(this); return; }
+	}
+
+    console.warn("No matching model for:",this.data,"x,y:",px,py);
+    debugger;
+},
+
+// {{{ .matchModel()
+
+matchModel: function matchModel(model, source)
+{
+	i = 9;
+	while(i--)
+		if((model[i] && !source[i]) || (!model[i] && source[i]))
+			return false;
+	return true;
 }
 
+// }}}
 };
 
 collision = new Collision();

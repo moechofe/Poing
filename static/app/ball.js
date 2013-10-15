@@ -127,7 +127,9 @@ update: function BallUpdate(num)
 			Render.drawSprite(Render.balls, x+cfg.ballToOriginX, y+cfg.ballToOriginY, sprite);
 			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
+            //console.time('test');
 			Collision.test(x,y);
+            //console.timeEnd('test');
 			// Test collisions
 			x--; y--;
 			// This will create garbage
@@ -135,7 +137,6 @@ update: function BallUpdate(num)
 			var pixels = Render.collides.getImageData(x,y,3,3).data;
 			//var pixels = Render.collides.getImageData(0,0,Render.collides.canvas.width,Render.collides.canvas.height).data;
 			//console.timeEnd('readPixels');
-			//debugger;
 			var model = new Uint32Array(pixels.buffer)
 
 			for(c=0; c<cfg.collidesReactions.length; c++)
