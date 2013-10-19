@@ -128,7 +128,7 @@ update: function BallUpdate(num)
 			if(env.debug) Render.rect(Render.balls, x,y,1,1, '#f00');
 
             //console.time('test');
-			Collision.test(x,y);
+			if(Collision.test(x,y, this)) continue;
             //console.timeEnd('test');
 			// Test collisions
 			x--; y--;
